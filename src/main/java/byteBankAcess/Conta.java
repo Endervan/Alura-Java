@@ -1,13 +1,13 @@
-package byteBank;
+package byteBankAcess;
 
 public class Conta {
     // atributos
-     double saldo;
-    int agencia;
-    int numero;
-    String titular;
+    private double saldo;
+    private int agencia;
+    private int numero;
+    private Cliente titular;
 
-    // o que  conta faz Metodos
+    // conta faz Metodos
 
     // void nao devolve resultado apena fazer ação
     public void deposita(double valor) {
@@ -35,4 +35,31 @@ public class Conta {
 
     }
 
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    public int getNumero() {
+        return this.numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getAgencia() {
+        return this.agencia;
+    }
+
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
+    }
+
+    public void setTitular(Cliente titular) {
+        this.titular = titular;
+    }
+
+    public Cliente getTitular() {
+        return titular;
+    }
 }
