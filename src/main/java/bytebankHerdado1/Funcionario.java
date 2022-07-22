@@ -1,11 +1,10 @@
-package byteBankHerdado;
+package bytebankHerdado1;
 
 public class Funcionario {
+    private double salario; // visivel tb pra filhos herdados
+    private int tipo = 0; //0 = Funcionário comum; 1 = Gerente; 2 = Diretor
     private String nome;
     private String cpf;
-    private double salario;
-    private int tipo = 0; //0 = Funcionário comum; 1 = Gerente; 2 = Diretor
-
 
     // bonificação de 10% funcionario
     public double getBonificacao() {

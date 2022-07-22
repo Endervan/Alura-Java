@@ -1,23 +1,20 @@
 package byteBankHerdado;
 
-public class Funcionario {
+public class Gerente {
     private String nome;
     private String cpf;
     private double salario;
-    private int tipo = 0; //0 = Funcionário comum; 1 = Gerente; 2 = Diretor
-
+    private int tipo = 0; // 0- funcionario comum  ,1- gerente  , 2 - diretor
 
     // bonificação de 10% funcionario
-    public double getBonificacao() {
-
-        if (this.tipo == 0) { // Funcionário comum;
+    public double getBonificacao() { // funcionario comum
+        if (this.tipo == 0) {
             return this.salario * 0.1;
-        } else if (this.tipo == 1) { // Gerente;
+        } else if (this.tipo == 1) { // gerente
             return this.salario;
-        } else {
-            return this.salario + 1000.0;
+        } else { // diretor
+            return this.salario + 1000.00;
         }
-
     }
 
     public int getTipo() {
