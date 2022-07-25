@@ -7,15 +7,15 @@ public class TestarReferencias {
         g1.setNome("Ender");
         g1.setSalario(5000.0);
 
-        Funcionario f = new Funcionario();
-        f.setSalario(2000.0);
+//        Funcionario f = new Funcionario();
+//        f.setSalario(2000.0);
 
-        Funcionario e = new EdfitorVideo();
+        Funcionario e = new EditorVideo();
         e.setSalario(2500.0);
 
         ControleBonificacao controle = new ControleBonificacao();
         controle.registro(g1);
-        controle.registro(f);
+//        controle.registro(f);
         controle.registro(e);
 
         System.out.println(controle.getSoma());

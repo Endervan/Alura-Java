@@ -1,23 +1,15 @@
 package bytebankHerdado1;
 
-public class Funcionario {
+// abstract => significa unico jamais poderam ser instaciado ex new Funcionario
+public abstract class Funcionario {
     private double salario; // visivel tb pra filhos herdados
     private int tipo = 0; //0 = Funcionário comum; 1 = Gerente; 2 = Diretor
     private String nome;
     private String cpf;
 
-    // bonificação de 10% funcionario
-    public double getBonificacao() {
-
-        if (this.tipo == 0) { // Funcionário comum;
-            return this.salario * 0.1;
-        } else if (this.tipo == 1) { // Gerente;
-            return this.salario;
-        } else {
-            return this.salario + 1000.0;
-        }
-
-    }
+    // bonificação de 10% funcionario add metodo abstract
+    // metodo sem corpo
+    public abstract double getBonificacao();
 
     public int getTipo() {
         return tipo;
