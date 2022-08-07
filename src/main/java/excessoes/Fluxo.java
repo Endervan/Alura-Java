@@ -13,10 +13,10 @@ public class Fluxo {
         metodo2();
         System.out.println("Fim do metodo1");
     }
-    
+
 
     private static void metodo2() {
         System.out.println("Ini do metodo2");
-        throw new ArithmeticException("Deu erro");
+        throw new MinhaExcecao("Deu erro");
     }
 }
