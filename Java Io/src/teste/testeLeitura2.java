@@ -15,20 +15,20 @@ public class testeLeitura2 {
 
         while (scanner.hasNextLine()) {
             String linha = scanner.nextLine();
-            System.out.println(linha);
 
             Scanner linhaScanner = new Scanner(linha);
+            linhaScanner.useDelimiter(",");
 
             linhaScanner.useLocale(Locale.US); // java usa configuracoes da região
 
-            linhaScanner.useDelimiter(",");
-            String valor1 = linhaScanner.next();
-            int valor2 = linhaScanner.nextInt();
-            int valor3 = linhaScanner.nextInt();
-            String valor4 = linhaScanner.next();
-            double valor5 = linhaScanner.nextDouble();
+            String tipoConta = linhaScanner.next();
+            int agencia = linhaScanner.nextInt();
+            int numeroConta = linhaScanner.nextInt();
+            String titular = linhaScanner.next();
+            double saldo = linhaScanner.nextDouble();
+            String valorFormatado = String.format(new Locale("pt","BR"),"%s - %04d-%08d, %20s: %8.2f ",tipoConta ,agencia ,numeroConta ,titular ,saldo);
 
-            System.out.println(valor1 + valor2 + valor3 + valor4 + valor5);
+            System.out.println(valorFormatado);
             linhaScanner.close();
 
 //            String[] valores = linha.split(",");
