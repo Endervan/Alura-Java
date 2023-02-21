@@ -8,6 +8,7 @@ public class Curso {
     private final String instrutor;
     private final List<Aula> aulas = new LinkedList<Aula>();
     private final Set<Aluno> alunos = new HashSet<Aluno>();
+    private Map<Integer,Aluno> matriculaParaAluno = new HashMap<>();
 
     public Curso(String nome, String instrutor) {
         this.nome = nome;
@@ -41,6 +42,7 @@ public class Curso {
 
     public void matricula(Aluno aluno) {
         this.alunos.add(aluno);
+        this.matriculaParaAluno.put(aluno.getNumeromatricula(),aluno);
     }
 
     //    public Set<Aluno> getAlunos() {
@@ -60,6 +62,10 @@ public class Curso {
 
     public boolean estaMatriculado(Aluno aluno) {
         return this.alunos.contains(aluno);
+    }
+
+    public Aluno buscaMatriculado(int numero) {
+       return matriculaParaAluno.get(numero); // buscar de modo muito rapido as informaçoes do aluno pela matrícula
     }
 }
 
