@@ -27,6 +27,8 @@ public class TestaCurso2 {
         System.out.println("o a2 e equals ao ender");
         System.out.println(a2.equals(ender));
 
+        System.out.println(a1.hashCode() == ender.hashCode());
+
 
 
 
