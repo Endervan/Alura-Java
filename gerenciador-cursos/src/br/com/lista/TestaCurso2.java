@@ -21,6 +21,14 @@ public class TestaCurso2 {
         System.out.println("Todos os alunos Matriculados");
         javaColecoes.getAlunos().forEach(System.out::println);
 
+        System.out.println(javaColecoes.estaMatriculado(a1));
+
+        Aluno ender = new Aluno("Ender Alves",5617);
+        System.out.println("o a2 e equals ao ender");
+        System.out.println(a2.equals(ender));
+
+
+
 
 
     }

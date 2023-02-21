@@ -43,7 +43,7 @@ public class Curso {
         this.alunos.add(aluno);
     }
 
-//    public Set<Aluno> getAlunos() {
+    //    public Set<Aluno> getAlunos() {
 //        return Collections.unmodifiableSet(alunos);
 //    }
     public Set<Aluno> getAlunos() {
@@ -58,5 +58,8 @@ public class Curso {
     }
 
 
+    public boolean estaMatriculado(Aluno aluno) {
+        return this.alunos.contains(aluno);
+    }
 }
 
