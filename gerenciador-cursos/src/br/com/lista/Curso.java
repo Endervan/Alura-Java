@@ -1,14 +1,13 @@
 package br.com.lista;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Curso {
     //    private final Long tempoTotal
     private final String nome;
     private final String instrutor;
-    private final List<Aula> aulas = new LinkedList<>();
+    private final List<Aula> aulas = new LinkedList<Aula>();
+    private final Set<Aluno> alunos = new HashSet<Aluno>();
 
     public Curso(String nome, String instrutor) {
         this.nome = nome;
@@ -40,9 +39,18 @@ public class Curso {
         return this.aulas.stream().mapToInt(Aula::getTempo).sum();
     }
 
-    @Override
-    public String toString() {
-        return "[Curso: " + this.nome + "tempo Total " + getTempoTotal();
+    public void matricula(Aluno aluno) {
+        this.alunos.add(aluno);
     }
+
+//    public Set<Aluno> getAlunos() {
+//        return Collections.unmodifiableSet(alunos);
+//    }
+    public Set<Aluno> getAlunos() {
+        return Collections.synchronizedSet(alunos);
+//        synchronizedSet ..monta lista em ordem alfabetica
+    }
+
+
 }
 
