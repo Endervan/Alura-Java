@@ -5,12 +5,10 @@ public class TheadTest {
 
 //        antigo
 //        new Thread(new Runnable() {
-//
 //            @Override
 //            public void run() {
 //                System.out.println("Executando um Runnable");
 //            }
-//
 //        }).start();
 
         // novo lambad faz msm recurso de cima

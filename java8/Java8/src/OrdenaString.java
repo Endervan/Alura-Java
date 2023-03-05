@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 
 public class OrdenaString {
     // usando versão antiga ante 1.8
@@ -22,7 +23,19 @@ public class OrdenaString {
 //        });
 
         // melhorado
-        palavras.sort((s1,s2)->Integer.compare(s1.length(),s2.length()));
+//        palavras.sort((s1,s2)->Integer.compare(s1.length(),s2.length()));
+
+        // sem lambad
+        Function<String, Integer> funcao = String::length;
+        Comparator<String> comparador = Comparator.comparing(funcao);
+        palavras.sort(comparador);
+
+        // equivalente a somente linha resumida
+
+        // com lambad
+//        palavras.sort(Comparator.comparing(String::length));
+
+
         System.out.println(palavras);
 
         // velho
@@ -35,7 +48,7 @@ public class OrdenaString {
 //        palavras.forEach(consumir);
 
         // melhorando codigo com lambdas
-        palavras.forEach(System.out::println);
+//        palavras.forEach(System.out::println);
     }
 }
 
