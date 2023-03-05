@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class OrdenaString {
     // usando versão antiga ante 1.8
@@ -13,11 +11,18 @@ public class OrdenaString {
         palavras.add("alura online");
         palavras.add("Editora online");
         palavras.add("Casa do Codigo online");
-        Comparator<String> comparator = new ComparadorPorTamanho();
+//        Comparator<String> comparator = new ComparadorPorTamanho();
         //Collections.sort(palavras,comparator);
 
         // novo
-        palavras.sort(comparator);
+//        palavras.sort((s1, s2) -> {
+//            if (s1.length() > s2.length()) return -1;
+//            if (s1.length() < s2.length()) return 0;
+//            return 0;
+//        });
+
+        // melhorado
+        palavras.sort((s1,s2)->Integer.compare(s1.length(),s2.length()));
         System.out.println(palavras);
 
         // velho
@@ -26,17 +31,20 @@ public class OrdenaString {
 //        }
 
         // novo
-        Consumer<String> consumir = new ImprimirLinha();
-        palavras.forEach(consumir);
+//        Consumer<String> consumir = new ImprimirLinha();
+//        palavras.forEach(consumir);
+
+        // melhorando codigo com lambdas
+        palavras.forEach(System.out::println);
     }
 }
 
-class ImprimirLinha implements Consumer<String>{
-    @Override
-    public void accept(String s) {
-        System.out.println(s);
-    }
-}
+//class ImprimirLinha implements Consumer<String>{
+//    @Override
+//    public void accept(String s) {
+//        System.out.println(s);
+//    }
+//}
 
 // metodo antigo
 class ComparadorPorTamanho implements Comparator<String> {
