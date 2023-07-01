@@ -33,9 +33,7 @@ public class FilmeController {
     public String cadastraFilme(DadosCadastraFilme dados) {
         var filme = new Filme(dados);
         filmes.add(filme);
-
-        System.out.println(filmes);
-        return "filmes/formulario";
+        return "redirect:/filmes";
     }
 
 
