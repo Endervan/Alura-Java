@@ -1,11 +1,6 @@
-package br.com.alura.screenmatch.domain.filme;
+package br.com.springg.screenmatch.domain.filme;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.hibernate.annotations.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "filmes")
@@ -26,7 +21,7 @@ public class Filme {
         this.genero = dados.genero();
     }
 
-
+    public Filme(){}
 
     @Override
     public String toString() {

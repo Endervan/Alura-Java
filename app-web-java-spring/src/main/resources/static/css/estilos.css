@@ -9,8 +9,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
@@ -21,7 +21,7 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure,
+article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -156,27 +156,27 @@ div > a {
 /* TABELA */
 
 table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    font-size: 16px;
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 16px;
 }
 
 th {
-    background-color: var(--azul-escuro);
-    color: white;
-    font-weight: bold;
-    padding: 12px;
-    text-align: center;
+  background-color: var(--azul-escuro);
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  text-align: center;
 }
 
 td {
-    padding: 12px;
-    border-bottom: 1px solid var(--cinza-claro);
+  padding: 12px;
+  border-bottom: 1px solid var(--cinza-claro);
 }
 
 tbody tr {
-    background-color: var(--azul-medio);
+  background-color: var(--azul-medio);
 }
 
 td a {
@@ -229,12 +229,12 @@ label {
 }
 
 input[type="submit"] {
-    background-color: var(--azul-escuro);
-    color: white;
-    border: none;
-    border-radius: 24px;
-    padding: 15px;
-    font-size: 14px;
-    text-transform: uppercase;
-    cursor: pointer;
+  background-color: var(--azul-escuro);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 15px;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
 }

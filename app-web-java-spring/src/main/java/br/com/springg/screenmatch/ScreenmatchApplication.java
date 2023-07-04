@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch;
+package br.com.springg.screenmatch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
