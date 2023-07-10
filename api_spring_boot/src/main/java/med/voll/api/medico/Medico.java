@@ -32,7 +32,10 @@ public class Medico {
     @Embedded // fica classe separada(campos dessa classe endereco fica no msm tabela de medicos
     private Endereco endereco;
 
+    private Boolean ativo;
+
     public Medico(DadosCadastroMedico dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.telefone = dados.telefone();
@@ -47,6 +50,10 @@ public class Medico {
         if (dados.telefone() != null) this.telefone = dados.telefone();
         if (dados.endereco() != null) this.endereco.atualizarInformacoes(dados.endereco());
 
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
 
