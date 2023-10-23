@@ -25,6 +25,7 @@ public class medicoController {
 
     @GetMapping
     public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+       // listagem somente dos medicos ativos
         return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
 
     }
@@ -44,7 +45,7 @@ public class medicoController {
     public void excluir(@PathVariable Long id) {
         // repository.deleteById(id); // exclusao fisica
         var medico = repository.getReferenceById(id);
-        medico.excluir();
+        medico.excluir(); // exclusao logica
 
     }
 
