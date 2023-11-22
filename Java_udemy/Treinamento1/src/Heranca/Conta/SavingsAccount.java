@@ -1,6 +1,10 @@
 package Heranca.Conta;
 
-public class SavingsAccount extends Account {
+// final na classe evita que essa class tenha subclass (Nao pode usa heranca extends)
+//public ===== final ======= class  SavingsAccount extends Account {
+
+
+public  class  SavingsAccount extends Account {
 
     private Double interestRate;
 
@@ -23,5 +27,12 @@ public class SavingsAccount extends Account {
     // atualizar o saldo com base taxa de juros
     public void updateBalance() {
         balance += balance * interestRate;
+    }
+
+
+    // final no metodo n deixa ele ser sobreprosto na subclass
+    @Override
+    public final void withdraw(double amount ){
+        balance -= amount ;
     }
 }
