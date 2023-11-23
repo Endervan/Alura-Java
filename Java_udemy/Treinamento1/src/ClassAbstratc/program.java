@@ -23,7 +23,6 @@ public class program {
 
 
         double sum = 0.0;
-
         for (Account acc:list){
             sum += acc.getBalance();
         }
@@ -37,17 +36,6 @@ public class program {
         for (Account acc:list){
             System.out.println("saldo de  cada  contas dps deposito de 10 reais em cada  = " + acc.getBalance());
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
