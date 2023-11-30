@@ -1,6 +1,6 @@
 package Interfaces.Locacao.Services;
 
-public class BrazilTaxService {
+public class BrazilTaxService implements TaxServiceInterface {
 
     // imposto cobrado no brazil
     public double tax(double amount) {

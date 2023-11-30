@@ -22,10 +22,10 @@ public class Program {
         System.out.print("Modelo do Carro: ");
         String carModel = sc.nextLine();
 
-        System.out.println("Retirada (dd/MM/yyyy HH:mm): ");
+        System.out.print("Retirada (dd/MM/yyyy HH:mm): ");
         LocalDateTime start = LocalDateTime.parse(sc.nextLine(), ftm);
 
-        System.out.println("Retorno (dd/MM/yyyy HH:mm): ");
+        System.out.print("Retorno (dd/MM/yyyy HH:mm): ");
         LocalDateTime finish = LocalDateTime.parse(sc.nextLine(), ftm);
 
         CarRental cr = new CarRental(start, finish, new Vehicle(carModel));
@@ -41,9 +41,9 @@ public class Program {
         rentalService.ProcessInvoice(cr);
 
         System.out.println("Fatura");
-        System.out.println("Pagamento Basico:" + cr.getInvoice().getBasicPayment());
+        System.out.println("Pagamento Basico:" + String.format("%.2f",cr.getInvoice().getBasicPayment()));
         System.out.println("Imposto:" + cr.getInvoice().getTax());
-        System.out.println("Pagamento Total:" + cr.getInvoice().getTotalPayment());
+        System.out.println("Pagamento Total:" + String.format("%.2f",cr.getInvoice().getTotalPayment()));
 
 
         sc.close();
