@@ -24,7 +24,7 @@ public class Exemplo1Service<T> {
             System.out.print(list.get(0));
         }
         for (int i = 1; i < list.size(); i++) {
-            System.out.print(list.get(i));
+            System.out.print("," + list.get(i));
         }
         System.out.print("]");
     }
