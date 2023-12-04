@@ -19,12 +19,11 @@ public class ProgramTest {
         System.out.println(c1 == c2); // fase pq  embora obj tenha msm conteudo ele tei referencia diferentes caso c1 e c2
 
 
-       // qnd referencias sao literal == qnd n existe instanciacao ex: String s1 = new String("test") ;
+        // qnd referencias sao literal == qnd n existe instanciacao ex: String s1 = new String("test") ;
         String s1 = "test";
         String s2 = "test";
 
-      //String s1 = new String("test") nesse caso java cria a referencia de memoria
-
+        //String s1 = new String("test") nesse caso java cria a referencia de memoria
         System.out.println(s1 == s2);
     }
 }
