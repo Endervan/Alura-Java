@@ -19,7 +19,7 @@ public class Program {
         list.add(new Product("HD Case", 80.90));
 
 
-        // 1º metodo : classe implement consumer
+        // 1º metodo : classe implement Function
         //list.forEach(new ProductConsumer());
 
         // 2º metodo : Reference metodo statico
@@ -33,7 +33,7 @@ public class Program {
         //list.forEach(cons);
 
         // 4º metodo : Lambad inline
-        list.forEach (p -> p.setPrice(p.getPrice() * 1.1));
+       // list.forEach (p -> p.setPrice(p.getPrice() * 1.1));
 
         list.forEach(System.out::println);
     }
