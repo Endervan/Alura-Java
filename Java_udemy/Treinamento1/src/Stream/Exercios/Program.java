@@ -31,13 +31,13 @@ public class Program {
                     .reduce(0.0, (x, y) -> x + y) / list.size();
             System.out.println("Average Price: " + avg);
 
-            Comparator<String> comp = (s1,s2) ->s1.toUpperCase().compareTo(s2.toUpperCase());
+            Comparator<String> comp = (s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase());
 
             // pegando media
             List<String> names = list.stream()
                     .filter(p -> p.getPrice() < avg)
-                    .map(p->p.getName())
-                    .sorted(comp.reversed()) // ordenacao
+                    .map(p -> p.getName())
+                    .sorted(comp.reversed()) // ordenacao inversar
                     .toList();
 
             names.forEach(System.out::println);
