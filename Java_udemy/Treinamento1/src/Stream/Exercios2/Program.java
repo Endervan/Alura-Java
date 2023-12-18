@@ -47,7 +47,7 @@ public class Program {
             Double sum = list.stream()
                     .filter(a -> a.getName().charAt(0) == criterio)
                     .map(Funcionario::getSalary)
-                    .reduce(0.0, (x, y) -> x + y);
+                    .reduce(0.0, Double::sum);
             System.out.println("Sum salary of people name starts with " + criterio + " : " + String.format("%.2f", sum));
 
         } catch (IOException e) {
