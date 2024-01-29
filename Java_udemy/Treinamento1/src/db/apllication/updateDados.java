@@ -1,40 +1,22 @@
 package db.apllication;
 
-import db.DB;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+import db.model.dao.DaoFactory;
+import db.model.dao.SellerDao;
+import db.model.entities.Seller;
 
 public class updateDados {
 
     public static void main(String[] args) {
-        Connection conn = null;
-        PreparedStatement st = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SellerDao sellerDao = DaoFactory.createSellerDao();
+        System.out.println("========= test  5 : seller update =========");
 
-        try {
-            conn = DB.getConnection();
-            st = conn.prepareStatement(
-                    "update seller "
-                            + "set BaseSalary = BaseSalary+? "
-                            + "where "
-                            + "(DepartmentId = ?)");
 
-            st.setDouble(1, 200.0);
-            st.setInt(2, 2);
+        Seller seller = sellerDao.findById(1);
+        System.out.println(seller);
+        seller.setName("scopel  max");
+        sellerDao.update(seller);
 
-            int rowsAffected = st.executeUpdate();
-
-            System.out.printf("Done! rows affected " + rowsAffected);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DB.closeStatement(st);
-            DB.closeConnection();
-        }
-
+        System.out.println("Uptade Complete ");
 
     }
 }

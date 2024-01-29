@@ -6,10 +6,7 @@ import db.model.dao.SellerDao;
 import db.model.entities.Department;
 import db.model.entities.Seller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,12 +23,66 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void insert(Seller obj) {
+        PreparedStatement st = null;
+
+        try {
+            st = conn.prepareStatement(
+                    "insert into seller(name, email, birthdate, basesalary, departmentid) "
+                            + "values (?,?,?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+
+
+            st.setString(1, obj.getName());
+            st.setString(2, obj.getEmail());
+            st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
+            st.setDouble(4, obj.getBaseSalary());
+            st.setInt(5, obj.getDepartment().getId());
+
+            int rowsAffected = st.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet rs = st.getGeneratedKeys();
+                if (rs.next()) {
+                    int id = rs.getInt(1);
+                    obj.setId(id);
+                }
+                DB.closeResultSet(rs);
+            } else {
+                throw new DBException("Error . no rows affected!");
+            }
+
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
 
     }
 
     @Override
     public void update(Seller obj) {
+        PreparedStatement st = null;
 
+        try {
+            st = conn.prepareStatement(
+                    "update seller set Name =?,Email=?,BirthDate=?,BaseSalary=?,DepartmentId=? "
+                            +"where Id=?");
+
+
+            st.setString(1, obj.getName());
+            st.setString(2, obj.getEmail());
+            st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
+            st.setDouble(4, obj.getBaseSalary());
+            st.setInt(5, obj.getDepartment().getId());
+            st.setInt(6, obj.getId());
+
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
@@ -111,7 +162,7 @@ public class SellerDaoJDBC implements SellerDao {
 
                 if (dep == null) { // somente unico departmant
                     dep = instanciateDepartment(rs);
-                    map.put(rs.getInt("DepartmentId"),dep); // salvando departamento
+                    map.put(rs.getInt("DepartmentId"), dep); // salvando departamento
                 }
 
                 Seller obj = instanciateSeller(rs, dep); // varios vendedores msm department
@@ -151,7 +202,7 @@ public class SellerDaoJDBC implements SellerDao {
 
                 if (dep == null) { // somente unico departmant
                     dep = instanciateDepartment(rs);
-                    map.put(rs.getInt("DepartmentId"),dep); // salvando departamento
+                    map.put(rs.getInt("DepartmentId"), dep); // salvando departamento
                 }
 
                 Seller obj = instanciateSeller(rs, dep); // varios vendedores msm department
