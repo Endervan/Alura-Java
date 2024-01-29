@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SellerDaoJDBC implements SellerDao {
 
@@ -43,10 +46,12 @@ public class SellerDaoJDBC implements SellerDao {
 
         try {
             st = conn.prepareStatement(
-                    "select seller.*,department.name as DepName  "
-                            + "from seller inner join department "
+                    "select seller.*, department.name as DepName "
+                            + "from seller "
+                            + "inner join department "
                             + "on seller.DepartmentId = department.Id "
-                            + "where seller.Id = ?");
+                            + "where DepartmentId = ? "
+                            + "order by Name ");
 
             st.setInt(1, id);
             rs = st.executeQuery();
@@ -86,6 +91,79 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public List<Seller> findAll() {
-        return null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(
+                    "select seller.*, department.name as DepName "
+                            + "from seller "
+                            + "inner join department "
+                            + "on seller.DepartmentId = department.Id "
+                            + "order by Name ");
+
+            rs = st.executeQuery();
+            List<Seller> list = new ArrayList<>();
+            Map<Integer, Department> map = new HashMap<>();
+
+            while (rs.next()) {
+                Department dep = map.get(rs.getInt("DepartmentId")); // map monta sem repeticao
+
+                if (dep == null) { // somente unico departmant
+                    dep = instanciateDepartment(rs);
+                    map.put(rs.getInt("DepartmentId"),dep); // salvando departamento
+                }
+
+                Seller obj = instanciateSeller(rs, dep); // varios vendedores msm department
+                list.add(obj);
+            }
+            return list;
+
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+    }
+
+    @Override
+    public List<Seller> findByDepartment(Department department) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement(
+                    "select seller.*, department.name as DepName "
+                            + "from seller "
+                            + "inner join department "
+                            + "on seller.DepartmentId = department.Id "
+                            + "where DepartmentId = ? "
+                            + "order by Name ");
+
+            st.setInt(1, department.getId());
+            rs = st.executeQuery();
+            List<Seller> list = new ArrayList<>();
+            Map<Integer, Department> map = new HashMap<>();
+
+            while (rs.next()) {
+                Department dep = map.get(rs.getInt("DepartmentId")); // map monta sem repeticao
+
+                if (dep == null) { // somente unico departmant
+                    dep = instanciateDepartment(rs);
+                    map.put(rs.getInt("DepartmentId"),dep); // salvando departamento
+                }
+
+                Seller obj = instanciateSeller(rs, dep); // varios vendedores msm department
+                list.add(obj);
+            }
+            return list;
+
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 }
