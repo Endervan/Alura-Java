@@ -13,11 +13,11 @@ public class Program2Departament {
 
         System.out.println("=========test 1 : seller findAll =========");
         List<Department> list = departmentDao.findAll();
-
         for (Department obj : list) {
             System.out.println(obj);
         }
 
+        System.out.println("=========t==================================================================");
         System.out.println("=========test 1 : seller findById ====================================");
         Department department = departmentDao.findById(2);
         System.out.println(department);
