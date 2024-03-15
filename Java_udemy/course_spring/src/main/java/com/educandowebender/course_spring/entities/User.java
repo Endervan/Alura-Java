@@ -1,11 +1,17 @@
 package com.educandowebender.course_spring.entities;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id // usa annotacion pra mostra jpa qual campo sera chve primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
