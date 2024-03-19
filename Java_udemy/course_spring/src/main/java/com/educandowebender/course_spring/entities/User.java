@@ -1,5 +1,6 @@
 package com.educandowebender.course_spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore // associacao mao dupla ..essa anotacion corrigir proble de loop infinito
     @OneToMany(mappedBy = "client") // um pra muitos
     private final List<Order> orders = new ArrayList<>();
 
