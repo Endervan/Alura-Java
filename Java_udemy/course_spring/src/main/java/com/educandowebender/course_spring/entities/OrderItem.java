@@ -1,6 +1,7 @@
 package com.educandowebender.course_spring.entities;
 
 import com.educandowebender.course_spring.entities.pk.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -14,7 +15,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrderItemPk id;
+    private final OrderItemPk id = new OrderItemPk(); // obs: sempre criar class auxiliar composta tei q instancia
     private Integer quantity;
     private Double price;
 
@@ -28,7 +29,8 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    public Order getOrder(Order order) {
+    @JsonIgnore
+    public Order getOrder() {
         return id.getOrder();
     }
 
@@ -36,7 +38,7 @@ public class OrderItem implements Serializable {
         id.setOrder(order);
     }
 
-    public Product getProduct(Product product) {
+    public Product getProduct() {
         return id.getProduct();
     }
 
