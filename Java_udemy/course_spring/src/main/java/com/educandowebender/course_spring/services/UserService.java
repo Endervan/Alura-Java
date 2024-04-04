@@ -28,8 +28,19 @@ public class UserService {
         return repository.save(obj);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         repository.deleteById(id);
+    }
 
+    public User update(Long id, User obj) {
+        User entity = repository.getReferenceById(id); // getReferenceById => deixa obj monitorado pelo JPA pra  gente mexer e manda dps pro BD
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
     }
 }
