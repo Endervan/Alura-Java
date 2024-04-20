@@ -4,6 +4,7 @@ import com.educandowebender.course_spring.entities.User;
 import com.educandowebender.course_spring.repositores.UserRepository;
 import com.educandowebender.course_spring.services.exeptions.DatabaseException;
 import com.educandowebender.course_spring.services.exeptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -44,9 +45,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
-        User entity = repository.getReferenceById(id); // getReferenceById => deixa obj monitorado pelo JPA pra  gente mexer e manda dps pro BD
-        updateData(entity, obj);
-        return repository.save(entity);
+        try {
+            User entity = repository.getReferenceById(id); // getReferenceById => deixa obj monitorado pelo JPA pra  gente mexer e manda dps pro BD
+            updateData(entity, obj);
+            return repository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
