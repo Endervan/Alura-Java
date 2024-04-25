@@ -1,11 +1,16 @@
 package com.enderximenes.workshopmongo.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Document(collection = "user")// especifica q essa class vai ser tipo mongoDB
 public class User implements Serializable {
     private static final long seriaversionlUID = 1L;
 
+    @Id
     private String id;
     private String name;
     private String email;
