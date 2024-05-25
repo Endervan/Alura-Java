@@ -1,9 +1,12 @@
 package com.enderximenes.workshopmongo.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "user")// especifica q essa class vai ser tipo mongoDB
@@ -15,6 +18,10 @@ public class User implements Serializable {
     private String name;
     private String email;
 
+    // lazy = true evita o alinhamento de user com seus  posts
+    @DBRef(lazy = true) // cria referencia em outras coleções
+    private List<Post> posts = new ArrayList<>();
+
     public User() {
     }
 
@@ -22,6 +29,14 @@ public class User implements Serializable {
         this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     public String getId() {
