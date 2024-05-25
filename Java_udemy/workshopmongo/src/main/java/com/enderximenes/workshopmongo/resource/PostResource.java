@@ -2,20 +2,16 @@ package com.enderximenes.workshopmongo.resource;
 
 
 import com.enderximenes.workshopmongo.domain.Post;
-import com.enderximenes.workshopmongo.domain.User;
-import com.enderximenes.workshopmongo.dto.UserDTO;
+import com.enderximenes.workshopmongo.resource.util.URL;
 import com.enderximenes.workshopmongo.service.PostService;
-import com.enderximenes.workshopmongo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/posts")
+@RequestMapping(value = "/posts/")
 public class PostResource {
 
     @Autowired
@@ -27,7 +23,12 @@ public class PostResource {
         return ResponseEntity.ok().body(obj);
     }
 
-
+    @RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+        text = URL.decodeParam(text); // decodifica o texto digitado
+        List<Post> list = service.findByTitle(text);
+        return ResponseEntity.ok().body(list);
+    }
 
 
 }
