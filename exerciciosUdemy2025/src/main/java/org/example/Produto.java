@@ -1,0 +1,31 @@
+package org.example;
+
+public class Produto {
+
+    String nome;
+    double preco;
+    double desconto;
+
+
+    public Produto() {
+    }
+
+    public Produto(String nome, double preco, double desconto) {
+        this.nome = nome;
+        this.preco = preco;
+        this.desconto = desconto;
+    }
+
+    Produto(String nomeInicial) {
+        this.nome = nomeInicial;
+    }
+
+    double precoComDesconto() {
+        return preco * (1 - this.desconto);
+    }
+
+    double precoComDescontoGerente(double descontoDoGerente) {
+        return preco * (1 - this.desconto + descontoDoGerente);
+    }
+
+}
