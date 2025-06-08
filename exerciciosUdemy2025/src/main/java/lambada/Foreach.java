@@ -16,10 +16,20 @@ public class Foreach {
         System.out.println("Lambada versao 1");
         aprovados.forEach(nome -> System.out.println(nome + " !!!!!"));
 
+        System.out.println("Lambada versao 2 - uso static");
+        aprovados.forEach(nome -> meuImprimir(nome));
+
         System.out.println();
 
-        System.out.println("Lambada versao 2 - metod reference");
+        System.out.println("Lambada versao 3 - metod reference");
         aprovados.forEach(System.out::println);
 
+        System.out.println("Lambada versao 4 - uso reference com static");
+        aprovados.forEach(Foreach::meuImprimir);
+
+    }
+
+    static void meuImprimir(String nome) {
+        System.out.println("OI meu nome e " + nome);
     }
 }
