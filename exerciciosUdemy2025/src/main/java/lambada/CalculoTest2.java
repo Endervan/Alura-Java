@@ -10,6 +10,9 @@ public class CalculoTest2 {
         calc = (x, y) -> x * y; // expressao lambda
 
         System.out.printf("somar = %.2f\n", calc.executar(10, 20));
+
+        System.out.println(calc.legal());
+        System.out.println(Calculo.muitoLegal());
     }
 }
 
