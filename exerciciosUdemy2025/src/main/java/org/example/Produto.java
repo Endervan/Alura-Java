@@ -2,7 +2,7 @@ package org.example;
 
 public class Produto {
 
-    String nome;
+    public String nome;
     double preco;
     double desconto;
 
@@ -28,4 +28,9 @@ public class Produto {
         return preco * (1 - this.desconto + descontoDoGerente);
     }
 
+    @Override
+    public String toString() {
+        double PrecoFinal = precoComDesconto();
+        return  nome +  ", tem preco final com desconto de " + PrecoFinal ;
+    }
 }
