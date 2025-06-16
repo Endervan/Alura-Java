@@ -3,8 +3,8 @@ package org.example;
 public class Produto {
 
     public String nome;
-    double preco;
-    double desconto;
+    public double preco;
+    public double desconto;
 
 
     public Produto() {
