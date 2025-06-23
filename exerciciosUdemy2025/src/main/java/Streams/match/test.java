@@ -22,16 +22,16 @@ public class test {
         Predicate<Aluno> aprovados = a -> a.nota >= 7;
         Predicate<Aluno> reprovados = aprovados.negate();
 
-        // allMatch verifica se todos os alunos passaram
+        // allMatch (Funcao Terminadora ) verifica se todos os alunos passaram
         System.out.println(alunos.stream().allMatch(aprovados));
 
-        // anyMatch verifica se todos pelo menos um aluno passou
+        // anyMatch (Funcao Terminadora ) verifica se todos pelo menos um aluno passou
         System.out.println(alunos.stream().anyMatch(aprovados));
 
-        // noneMatch verifica se nenhum esta aprovado
+        // noneMatch (Funcao Terminadora ) verifica se nenhum esta aprovado
         System.out.println(alunos.stream().noneMatch(aprovados));
 
-        // negando predicatye
+        // negando predicate
         System.out.println(alunos.stream().noneMatch(reprovados));
     }
 }
