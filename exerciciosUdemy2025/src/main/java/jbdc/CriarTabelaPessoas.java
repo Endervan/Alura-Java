@@ -20,7 +20,7 @@ public class CriarTabelaPessoas {
             Statement stmt = conexao.createStatement();
             stmt.execute(sql);
             System.out.println("Tabela pessoas criada com sucesso!");
-            stmt.close();
+            conexao.close();
 
     }
 }
