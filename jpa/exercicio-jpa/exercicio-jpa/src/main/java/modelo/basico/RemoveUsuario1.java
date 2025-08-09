@@ -13,7 +13,7 @@ public class RemoveUsuario1 {
 
         // estando dentro transação, o objeto e gerenciado
         em.getTransaction().begin();
-        Usuario usuario = em.find(Usuario.class, 1L);
+        Usuario usuario = em.find(Usuario.class, 7L);
 
         if (usuario != null) {
             em.remove(usuario);
