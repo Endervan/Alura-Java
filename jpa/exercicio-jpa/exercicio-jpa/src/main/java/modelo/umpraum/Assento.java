@@ -12,6 +12,18 @@ public class Assento {
 
     private String nome;
 
+    // Relacionamento bidirecional com Cliente (consegui ver o Cliente a partir do Assento)
+    @OneToOne(mappedBy = "assento")
+    private Cliente cliente;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     // Construtor padrão necessário para JPA
     public Assento() {
     }
