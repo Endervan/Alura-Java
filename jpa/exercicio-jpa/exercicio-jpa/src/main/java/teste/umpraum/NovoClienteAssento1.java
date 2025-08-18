@@ -11,11 +11,11 @@ public class NovoClienteAssento1 {
         Assento assento = new Assento("10F");
         Cliente cliente = new Cliente("ender", assento);
 
-        DAO<Object> dao = new DAO<>();
-        dao.abrirT()
-                .incluir(assento)
-                .incluir(cliente)
-                .fecharT()
-                .fechar();
+//        DAO<Object> dao = new DAO<>();
+//        dao.abrirT()
+//                .incluir(assento)
+//                .incluir(cliente)
+//                .fecharT()
+//                .fechar();
     }
 }

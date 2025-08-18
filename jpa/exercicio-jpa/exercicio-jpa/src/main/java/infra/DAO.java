@@ -1,39 +1,32 @@
 package infra;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
-
 
 public class DAO<E> {
 
     private static EntityManagerFactory emf;
-    private final EntityManager em;
+    private EntityManager em;
     private Class<E> classe;
 
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("exercicio-jpa");
+            emf = Persistence
+                    .createEntityManagerFactory("exercicio-jpa");
         } catch (Exception e) {
-
+            System.err.println("Erro ao inicializar o EntityManagerFactory: " + e.getMessage());
         }
     }
 
+    public DAO(Class<E> classe) {
+        this.classe = classe;
+        this.em = emf.createEntityManager(); // Inicialização do EntityManager
+    }
 
     public E obterPorId(Object id) {
         return em.find(classe, id);
-    }
-
-
-    public DAO(Class<E> classe) {
-        this.classe = classe;
-        em = emf.createEntityManager();
-    }
-
-    public DAO() {
-        this(null);
     }
 
     public DAO<E> abrirT() {
@@ -73,9 +66,8 @@ public class DAO<E> {
                 .getResultList();
     }
 
-    public DAO<E> fechar() {
+    public void fechar() {
         em.close();
-        return this;
     }
 
 }
