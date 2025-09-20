@@ -1,10 +1,7 @@
 package org.example.ender.controls;
 
 import org.example.ender.model.Cliente;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clientes")
@@ -18,5 +15,10 @@ public class ClienteController {
     @GetMapping(path = "/{id}")
     public Cliente obterClientePorId1(@PathVariable int id) {
         return new Cliente(id, "maria", "999.456.999-00");
+    }
+
+    @GetMapping
+    public Cliente obterClientePorId2(@RequestParam(name = "id") int id) {
+        return new Cliente(id, "joao", "555.111.666-00");
     }
 }
