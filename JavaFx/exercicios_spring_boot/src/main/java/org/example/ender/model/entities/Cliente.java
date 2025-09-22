@@ -1,4 +1,4 @@
-package org.example.ender.model;
+package org.example.ender.model.entities;
 
 public class Cliente {
 

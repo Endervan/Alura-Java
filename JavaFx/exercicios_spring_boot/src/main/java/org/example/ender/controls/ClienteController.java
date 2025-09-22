@@ -1,6 +1,6 @@
 package org.example.ender.controls;
 
-import org.example.ender.model.Cliente;
+import org.example.ender.model.entities.Cliente;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
