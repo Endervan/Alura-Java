@@ -6,6 +6,8 @@ import org.example.ender.model.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/produtos")
 public class ProdutoController {
@@ -31,5 +33,15 @@ public class ProdutoController {
     public @ResponseBody Produto novoProdutoPrecoObj(@Valid Produto produto) {
         produtoRepository.save(produto);
         return produto;
+    }
+
+    @GetMapping
+    public Iterable<Produto> obterProdutos() {
+        return produtoRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Produto> obterPorId(@PathVariable int id) {
+        return produtoRepository.findById(id);
     }
 }
