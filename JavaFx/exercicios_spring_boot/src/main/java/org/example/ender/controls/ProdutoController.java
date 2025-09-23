@@ -44,4 +44,10 @@ public class ProdutoController {
     public Optional<Produto> obterPorId(@PathVariable int id) {
         return produtoRepository.findById(id);
     }
+
+    @PutMapping // Atualiza um produto existente inteiro , patch alterar somente em partes
+    public Produto alterProduto(@Valid Produto produto) {
+        produtoRepository.save(produto);
+        return produto;
+    }
 }
