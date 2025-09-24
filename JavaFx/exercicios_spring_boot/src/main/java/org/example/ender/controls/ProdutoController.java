@@ -49,4 +49,9 @@ public class ProdutoController {
 //        produtoRepository.save(produto);
 //        return produto;
 //    }
+
+    @DeleteMapping(path = "/{id}")
+    public void deletarProduto(@PathVariable int id) {
+        produtoRepository.deleteById(id);
+    }
 }
