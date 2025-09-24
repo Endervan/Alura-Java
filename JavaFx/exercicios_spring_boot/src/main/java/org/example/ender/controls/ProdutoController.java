@@ -15,9 +15,8 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    @PostMapping
-    public @ResponseBody Produto novoProduto(@RequestParam String nome) {
-        Produto produto = new Produto(nome);
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
+    public @ResponseBody Produto salvarProduto(@Valid Produto produto) {
         produtoRepository.save(produto);
         return produto;
     }
@@ -45,9 +44,9 @@ public class ProdutoController {
         return produtoRepository.findById(id);
     }
 
-    @PutMapping // Atualiza um produto existente inteiro , patch alterar somente em partes
-    public Produto alterProduto(@Valid Produto produto) {
-        produtoRepository.save(produto);
-        return produto;
-    }
+//    @PutMapping // Atualiza um produto existente inteiro  ou ´parcial  , patch alterar somente parcial
+//    public Produto alterProduto(@Valid Produto produto) {
+//        produtoRepository.save(produto);
+//        return produto;
+//    }
 }
