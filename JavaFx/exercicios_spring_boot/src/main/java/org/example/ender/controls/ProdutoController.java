@@ -4,6 +4,8 @@ import jakarta.validation.Valid;
 import org.example.ender.model.entities.Produto;
 import org.example.ender.model.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -37,6 +39,17 @@ public class ProdutoController {
     @GetMapping
     public Iterable<Produto> obterProdutos() {
         return produtoRepository.findAll();
+    }
+
+    @GetMapping("/nome/{parteNome}")
+    public Iterable<Produto> obterProdutosPorNome(@PathVariable String parteNome) {
+        return produtoRepository.findByNomeContainingIgnoreCase(parteNome);
+    }
+
+    @GetMapping(path = "paginas/{numeroPagina}")
+    public Iterable<Produto> obterProdutosPaginacao(@PathVariable int numeroPagina) {
+        Pageable page = PageRequest.of(numeroPagina, 3);
+        return produtoRepository.findAll(page);
     }
 
     @GetMapping("/{id}")
